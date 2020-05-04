@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: contacts-boa
+spec:
+  hosts:
+  # must be of form name.namespace.global
+  - contacts.boa.global
+  # Treat remote cluster services as part of the service mesh
+  # as all clusters in the service mesh share the same root of trust.
+  location: MESH_INTERNAL
+  ports:
+  - name: http1
+    number: 8080
+    protocol: http
+  resolution: DNS
+  addresses:
+  - 240.0.0.3
+  endpoints:
+  - address: 127.0.0.1
+    ports:
+      http1: 15443 # Do not change this port value

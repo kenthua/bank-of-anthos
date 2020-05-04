@@ -1,0 +1,37 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../../kubernetes-manifests/balance-reader.yaml
+- ../../../kubernetes-manifests/frontend.yaml
+- ../../../kubernetes-manifests/ledger-db.yaml
+- ../../../kubernetes-manifests/ledger-writer.yaml
+- ../../../kubernetes-manifests/loadgenerator.yaml
+- ../../../kubernetes-manifests/transaction-history.yaml
+- ../../resources
+- contacts-service.yaml
+- contacts-se.yaml
+- contacts-vs.yaml
+- frontend-gateway.yaml
+- frontend-vs.yaml
+- userservice-service.yaml
+- userservice-se.yaml
+- userservice-vs.yaml
+patchesJson6902:
+- target:
+    version: v1
+    kind: Service
+    name: frontend
+  path: frontend-service-patch.yaml
+- target:
+    group: networking.istio.io
+    version: v1alpha3
+    kind: ServiceEntry
+    name: userservice-boa
+  path: serviceentry-patch.yaml
+- target:
+    group: networking.istio.io
+    version: v1alpha3
+    kind: ServiceEntry
+    name: contacts-boa
+  path: serviceentry-patch.yaml
+namespace: boa
