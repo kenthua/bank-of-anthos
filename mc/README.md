@@ -1,7 +1,7 @@
 
 Please see [kenthua/anthos-cd-pipeline](https://github.com/kenthua/anthos-cd-pipeline) for the latest version.
 
-## DEPRECATED
+## BELOW DEPRECATED
 
 ### Multi-cluster deployment, based on [istio replicated control planes](https://istio.io/docs/setup/install/multicluster/gateways/) - istio 1.4.9 and 1.5.2
 - Istio
